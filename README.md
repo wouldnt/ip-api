@@ -21,7 +21,6 @@
 1. database structure folder
 1. testing with jest
 1. coverage use jest
-1. with docker example
 1. validiation, use express-valdator and joi
 1. pagination example
 1. custom message api response
@@ -53,49 +52,6 @@ npm run dev or yarn dev
 npm run test or yarn test
 ```
 
-* via make :
-
-```sh
-# start aplication with docker
-make docker-start 
-
-# stop docker container
-make docker-stop 
-
-# remove docker container
-make docker-down 
-```
-
-### fill in the copied environment earlier
-
-```sh
-APP_PORT=2000
-TZ=Asia/Jakarta
-MONGO_SERVICE=# uri mongodb
-AUTH_SOURCE= #auth service
-SECRET_KEY= #jwt secret key here
-```
-
-### run with docker-compose
-
-```sh
-docker-compose up --build
-```
-
-### or run with background process
-
-```sh
-docker-compose up --build -d
-```
-### execution npm with container docker
-```sh
-# install package
-docker-compose exec boillerplate npm install
-
-# running unit testing
-docker-compose exec boillerplate npm run test
-```
-
 ## Documentation API 
 using swagger check in folder static
 
@@ -105,7 +61,6 @@ using swagger check in folder static
 ├── .github/            * all workflows github actions
 ├── caprover/           * for deployment in caprover
 ├── coverage/           * all output coverage
-├── docker/             * all dockerfile
 ├── src/                * all source code in here
   └── api/              * all api file here
   └── config/           * all configuration file here
