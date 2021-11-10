@@ -2,7 +2,6 @@
 [![made-with-nodejs](https://img.shields.io/badge/Made%20with-Node.JS-1f425f.svg)](https://nodejs.org)
 [![made-with-expressjs](https://img.shields.io/badge/Made%20with-Express.JS-1f425f.svg)](https://expressjs.com/)
 
-
 ## Stack
 - **Node.js** - [http://nodejs.org/](http://nodejs.org/)
 - **Express** - [http://expressjs.com/](http://expressjs.com/)
@@ -15,8 +14,6 @@
 1. Coverage and Testing with Jest
 1. Validation using express-validator and JOI
 1. Pagination example
-<!--1. custom message api response-->
-<!--1. eslint airbnb base-->
 
 ## Unit testing
 - **Jest** - [https://jestjs.io/](https://jestjs.io/)
@@ -34,14 +31,14 @@ cp .env-sample .env
 * via yarn or npm :
 
 ```sh
-# install package
-npm install or yarn install
+# Installing packages
+npm install, or alternatively, yarn install
 
-#  running app
-npm run dev or yarn dev
+# Running the app
+npm run dev, or alternatively, yarn dev
 
-# running unit tetsing
-npm run test or yarn test
+# Running Unit tests
+npm run test, or alternatively, yarn test
 ```
 
 ## Documentation API 
