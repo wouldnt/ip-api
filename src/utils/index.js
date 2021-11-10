@@ -4,4 +4,5 @@ module.exports = {
   ...require("./exceptions"),
   ...require("./pagination"),
   ...require("./validation"),
+  ...require("./fetchNodes")
 };
