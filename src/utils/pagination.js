@@ -1,61 +1,67 @@
-const { LIMIT, PAGE, MONGO } = require('./constant')
-/* eslint-disable no-restricted-syntax */
+const { LIMIT, PAGE, MONGO } = require("./constant");
+
 const jsonParse = (str) => {
-  let parsing
+  let parsing;
   try {
-    parsing = JSON.parse(str)
+    parsing = JSON.parse(str);
   } catch (e) {
-    parsing = e
+    parsing = e;
   }
 
-  return parsing
-}
+  return parsing;
+};
 
 const props = (strings) => {
-  let value
-  if (typeof strings === 'string' || strings instanceof String) {
-    value = new RegExp(strings, 'i')
+  let value;
+  if (typeof strings === "string" || strings instanceof String) {
+    value = new RegExp(strings, "i");
   } else {
-    value = strings
+    value = strings;
   }
-  return value
-}
+  return value;
+};
 
 const extractSearch = (req) => {
-  let search
+  let search;
 
   if (req.query.search) {
-    const searching = jsonParse(req.query.search)
-    const push = {}
+    const searching = jsonParse(req.query.search);
+    const push = {};
     // eslint-disable-next-line guard-for-in
     for (const prop in searching) {
-      push[prop] = props(searching[prop])
+      push[prop] = props(searching[prop]);
     }
-    search = push
+    search = push;
   } else {
-    search = {}
+    search = {};
   }
 
-  return search
-}
+  return search;
+};
 
 const paging = (req) => {
-  let search
+  let search;
   try {
-    search = extractSearch(req)
+    search = extractSearch(req);
   } catch (error) {
-    return error
+    return error;
   }
-  const sort = (req.query.sort ? jsonParse(req.query.sort) : { _id: MONGO.SORT[1] })
-  const where = (req.query.where ? jsonParse(req.query.where) : {})
-  const page = +req.query.page || PAGE
-  const limit = +req.query.limit || LIMIT
+  const sort = req.query.sort
+    ? jsonParse(req.query.sort)
+    : { _id: MONGO.SORT[1] };
+  const where = req.query.where ? jsonParse(req.query.where) : {};
+  const page = +req.query.page || PAGE;
+  const limit = +req.query.limit || LIMIT;
 
   return {
-    search, sort, where, page, limit
-  }
-}
+    search,
+    sort,
+    where,
+    page,
+    limit,
+  };
+};
 
 module.exports = {
-  paging
-}
+  paging,
+};
