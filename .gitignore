@@ -111,3 +111,6 @@ package-lock.json
 
 # visual studio code cache
 .vscode/
+
+#VSCode Counter
+.VSCodeCounter

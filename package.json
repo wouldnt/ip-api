@@ -1,7 +1,7 @@
 {
-  "name": "express-template-restfullapi",
-  "version": "1.4",
-  "description": "express boilerplate template restfullapi",
+  "name": "ip-api",
+  "version": "1.0.0",
+  "description": "an ip api",
   "main": "src/index.js",
   "scripts": {
     "prod": "pm2 start src/index.js",
@@ -16,17 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/firmanJS/express-template.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "keywords": [
-    "expressjs",
-    "boillerplate",
-    "template",
-    "structure",
-    "api",
-    "restfullapi"
-  ],
   "author": "firmanjs",
   "license": "MIT",
   "bugs": {
@@ -56,6 +45,7 @@
     "method-override": "^3.0.0",
     "moment": "^2.27.0",
     "morgan": "^1.10.0",
+    "node-fetch": "^3.1.0",
     "node-mocks-http": "^1.10.1",
     "password-hash": "^1.2.2",
     "pm2": "^4.5.0",
