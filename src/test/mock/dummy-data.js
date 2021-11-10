@@ -1,12 +1,12 @@
 const dummyData = [
   {
     _id: 1,
-    name: 'hadi',
+    name: "james",
   },
   {
     _id: 2,
-    name: 'sucahyo',
+    name: "david",
   },
-]
+];
 
-module.exports = { dummyData }
+module.exports = { dummyData };
