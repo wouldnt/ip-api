@@ -1,53 +1,54 @@
-/* eslint-disable no-console */
-/* eslint-disable no-plusplus */
-const cluster = require('cluster')
-const os = require('os')
-const app = require('./app')
+const cluster = require("cluster");
+const os = require("os");
+const app = require("./app");
 
-require('dotenv').config()
+require("dotenv").config();
 
-let server
+let server;
 
 const exitHandler = () => {
   if (server) {
     server.close(() => {
-      console.info('Server closed')
-      process.exit(1)
-    })
+      console.info("Server closed");
+      process.exit(1);
+    });
   } else {
-    process.exit(1)
+    process.exit(1);
   }
-}
+};
 
 const unexpectedErrorHandler = (error) => {
-  console.error(error)
-  exitHandler()
-}
+  console.error(error);
+  exitHandler();
+};
 
-process.on('uncaughtException', unexpectedErrorHandler)
-process.on('unhandledRejection', unexpectedErrorHandler)
+process.on("uncaughtException", unexpectedErrorHandler);
+process.on("unhandledRejection", unexpectedErrorHandler);
 
-process.on('SIGTERM', () => {
-  console.info('SIGTERM received')
+process.on("SIGTERM", () => {
+  console.info("SIGTERM received");
   if (server) {
-    server.close()
+    server.close();
   }
-})
+});
 
-if (process.env.CLUSTER_MODE === 'on' && cluster.isMaster) {
+if (process.env.CLUSTER_MODE === "on" && cluster.isMaster) {
   const cpuCore = os.cpus().length;
   for (let i = 0; i < cpuCore; i++) {
     cluster.fork();
   }
-  cluster.on('online', (worker) => {
-    if (worker.isConnected()) console.info(`worker is active ${worker.process.pid}`);
-  })
-  cluster.on('exit', (worker) => {
-    if (worker.isDead()) console.info(`worker is dead ${worker.process.pid}`);
+  cluster.on("online", (worker) => {
+    if (worker.isConnected())
+      console.info(`worker is active: ${worker.process.pid}`);
+  });
+  cluster.on("exit", (worker) => {
+    if (worker.isDead()) console.info(`worker is dead: ${worker.process.pid}`);
     cluster.fork();
-  })
+  });
 } else {
   app.listen(process.env.APP_PORT, () => {
-    console.info(`express boillerplate app running in port ${process.env.APP_PORT}`)
-  })
+    console.info(
+      `API running on port ${process.env.APP_PORT}`
+    );
+  });
 }
