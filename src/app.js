@@ -26,27 +26,21 @@ app.use(morgan(morganFormat, { stream: process.stderr }));
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
   integrations: [
-    // enable HTTP calls tracing
     new Sentry.Integrations.Http({ tracing: true }),
-    // enable Express.js middleware tracing
     new Tracing.Integrations.Express({
-      // to trace all requests to the default router
       app,
     }),
   ],
 
-  // We recommend adjusting this value in production, or using tracesSampler
-  // for finer control
   tracesSampleRate: Number(process.env.SENTRY_TRACE_RATE),
 });
-// RequestHandler creates a separate execution context using domains, so that every
-// transaction/span/breadcrumb is attached to its own Hub instance
+
 if (process.env.NODE_ENV !== "test") {
   app.use(Sentry.Handlers.requestHandler());
 }
-// TracingHandler creates a trace for every incoming request
+
 app.use(Sentry.Handlers.tracingHandler());
-// remove favicon
+
 app.get("/favicon.ico", (_req, res) => {
   res.status(204);
   res.end();
