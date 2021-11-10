@@ -1,127 +1,81 @@
 {
-    "/user": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Limit value is number by default limit is 5. ex : ?limit=100"
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "object"
-            },
-            "description": "Sort value is object with rule {column-name:order}. ex : ?sort={'_id':-1}"
-          },
-          {
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "number"
-            },
-            "description": "Page value is number. ex : ?page=1"
-          },
-          {
-            "in": "query",
-            "name": "where",
-            "required": false,
-            "schema": {
-              "type": "object"
-            },
-            "description": "Where value is object  with rule {column-name:value}. ex : ?where={'name':'sandi', 'dob':'1990-12-31'}"
-          },
-          {
-            "in": "query",
-            "name": "search",
-            "required": false,
-            "schema": {
-              "type": "object"
-            },
-            "description": "Search value is object with rule {column-name:value}. ex : ?search={'name':'s', 'dob':'12'}"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object"
-                    },
-                    "_links": {
-                      "type": "string"
-                    },
-                    "_meta": {
-                      "type": "object"
-                    }
-                  }
-                }
-              }
-            }
-          }
+  "/user": {
+    "get": {
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
         }
-      },
-      "post": {
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "limit",
           "required": false,
+          "schema": {
+            "type": "integer"
+          },
+          "description": "Limit value is number by default limit is 5. ex : ?limit=100"
+        },
+        {
+          "in": "query",
+          "name": "sort",
+          "required": false,
+          "schema": {
+            "type": "object"
+          },
+          "description": "Sort value is object with rule {column-name:order}. ex : ?sort={'_id':-1}"
+        },
+        {
+          "in": "query",
+          "name": "page",
+          "required": false,
+          "schema": {
+            "type": "number"
+          },
+          "description": "Page value is number. ex : ?page=1"
+        },
+        {
+          "in": "query",
+          "name": "where",
+          "required": false,
+          "schema": {
+            "type": "object"
+          },
+          "description": "Where value is object  with rule {column-name:value}. ex : ?where={'name':'sandi', 'dob':'1990-12-31'}"
+        },
+        {
+          "in": "query",
+          "name": "search",
+          "required": false,
+          "schema": {
+            "type": "object"
+          },
+          "description": "Search value is object with rule {column-name:value}. ex : ?search={'name':'s', 'dob':'12'}"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SchemaUser"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
+                "type": "object",
+                "properties": {
+                  "message": {
                     "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type":"object"
-                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object"
+                  },
+                  "_links": {
+                    "type": "string"
+                  },
+                  "_meta": {
+                    "type": "object"
                   }
                 }
               }
@@ -130,139 +84,174 @@
         }
       }
     },
-    "/user/{id}": {
-      "get": {
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
+    "post": {
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "requestBody": {
+        "required": false,
+        "content": {
+          "application/json": {
             "schema": {
-              "type": "string"
+              "$ref": "#/components/schemas/SchemaUser"
             }
           }
-        ],
-        "responses": {
-            "200": {
-              "description": "OK",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                      "type": "string"
-                      },
-                      "status": {
-                        "type": "string"
-                      },
-                      "data": {
-                        "type":"object"
-                      }
-                    }
-                  }
-                }
-              }
-            }
         }
       },
-      "put": {
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": false,
+      "responses": {
+        "200": {
+          "description": "OK",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SchemaUser"
-              }
-            }
-          }
-        },
-        "responses": {
-            "200": {
-              "description": "OK",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "type": "object",
-                    "properties": {
-                      "message": {
-                      "type": "string"
-                      },
-                      "status": {
-                        "type": "string"
-                      },
-                      "data": {
-                        "type":"object"
-                      }
-                    }
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object"
                   }
                 }
               }
             }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Users"
-        ],
-        "security": [
-          {
-            "bearerAuth": []
           }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "string"
+        }
+      }
+    }
+  },
+  "/user/{id}": {
+    "get": {
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
+        }
+      }
+    },
+    "put": {
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "requestBody": {
+        "required": false,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/SchemaUser"
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
                     "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    },
-                    "data": {
-                      "type": "object"
-                    }
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "data": {
+                    "type": "object"
                   }
                 }
               }
@@ -272,3 +261,4 @@
       }
     }
   }
+}
